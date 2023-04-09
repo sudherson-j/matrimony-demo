@@ -1,0 +1,23 @@
+mat-grid-tile {
+  img {
+    border-radius: 10px;
+    width: 600px;
+    height: 400px;
+  }
+
+  .close-btn {
+    position: absolute;
+    color: red;
+  }
+}
+.mat-grid-tile-content.first {
+  border: 5px solid red;
+}
+.button24 {
+  width: 25px;
+  height: 26px;
+}
+.icon24 {
+  font-size: 14px;
+  margin-top: -8px;
+}

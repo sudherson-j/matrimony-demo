@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.footer-btn {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background: white;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  button {
+    border-radius: 30px;
+  }
+}
+
+mat-grid-tile.mat-grid-tile.cdk-drag.container.first {
+  border: 2px solid red;
+}
+
+.header-text {
+  padding: 15px;
+}
+
+.mat-grid-tile-content {
+  padding: 15px !important;
+}
+.mat-grid-list {
+  display: block;
+  position: relative;
+  padding: 0 30px;
+}
+.mat-grid-list div:first-child {
+  display: flex;
+}
+.mat-grid-list {
+  margin: 20px;
+}
+.mat-nav-list {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.mat-list-item {
+  margin-right: 20px;
+}
+.mat-list-item-content {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.mat-list-item-content a.space {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+}
+.mat-nav-list a.space div.icon1 {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 20px !important;
+  display: flex;
+  flex: 1 !important;
+}
+.mat-list-base .mat-list-item .mat-list-item-conten {
+  display: block;
+}
+.close-btn {
+  top: 0px;
+  right: 0px;
+}
+.mat-grid-tile .mat-grid-tile-content button {
+  font: 14px/100% arial, sans-serif;
+  position: absolute;
+  right: 5px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  top: 5px;
+}
+.mat-grid-tile {
+  background: lightgray;
+  border-radius: 15px;
+}

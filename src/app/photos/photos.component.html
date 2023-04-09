@@ -1,0 +1,37 @@
+<div class="header-text">
+  <h4 style="font-size: 25px" *ngIf="items.length < 2">
+    Photos are the first thing members look in your profile. Add multiple photos
+    to get more matches.
+  </h4>
+  <h4 style="font-size: 25px" *ngIf="items.length > 1">
+    Drag photos to reorder, First photo will be your profile photo.
+  </h4>
+</div>
+<div class="footer-btn">
+  <button mat-raised-button color="primary" (click)="addPhotos()">
+    Add Photos
+  </button>
+</div>
+<mat-grid-list
+  cols="2"
+  rowHeight="3:2"
+  [gutterSize]="'20px'"
+  *ngIf="items.length > 0"
+  cdkDropList
+  [cdkDropListData]="items"
+  (cdkDropListDropped)="drop($event)"
+>
+  <mat-grid-tile class="container" cdkDrag *ngFor="let photo of items">
+    <img CdkDragHandle class="tile-image" [src]="photo.src" />
+    <button
+      (click)="openDialog(photo)"
+      mat-mini-fab
+      matTooltip="Delete"
+      color="warn"
+      class="button24"
+      aria-label="Example mini fab with a heart icon"
+    >
+      <mat-icon class="icon24">cancel</mat-icon>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>

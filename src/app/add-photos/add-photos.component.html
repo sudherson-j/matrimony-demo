@@ -1,0 +1,120 @@
+<mat-nav-list>
+  <h2>Add Photos</h2>
+  <mat-list-item (click)="action('upload')"
+    ><a class="space">
+      <div class="icon1">
+        <mat-icon>photo_library</mat-icon><span>Upload from gallary</span>
+      </div>
+      <span class="arrow"><mat-icon>chevron_right</mat-icon></span>
+    </a>
+  </mat-list-item>
+
+  <mat-list-item (click)="action('camera')"
+    ><a class="space">
+      <div class="icon1">
+        <mat-icon>photo_camera</mat-icon>
+        <span>Take a photo</span>
+      </div>
+      <span class="arrow"><mat-icon>chevron_right</mat-icon></span>
+    </a>
+  </mat-list-item>
+
+  <mat-list-item (click)="action('whatsapp')"
+    ><a class="space">
+      <div class="icon1">
+        <mat-icon svgIcon="whatsapp"></mat-icon>
+        <span>WhatsApp your photos to us @ +91 9XXXXXXX18</span>
+      </div>
+      <span class="arrow"><mat-icon>chevron_right</mat-icon></span>
+    </a></mat-list-item
+  >
+</mat-nav-list>
+
+<ng-template #takePhoto>
+  <div style="text-align: center">
+    <div>
+      <webcam
+        [height]="300"
+        [width]="300"
+        [trigger]="triggerObservable"
+        (imageCapture)="handleImage($event)"
+        *ngIf="showWebcam"
+        [allowCameraSwitch]="allowCameraSwitch"
+        [switchCamera]="nextWebcamObservable"
+        [videoOptions]="videoOptions"
+        (cameraSwitched)="cameraWasSwitched($event)"
+        (initError)="handleInitError($event)"
+      ></webcam>
+      <br />
+      <button mat-raised-button color="primary" (click)="triggerSnapshot()">
+        {{ webcamImage ? "Retake Picture" : "Take Picture" }}
+      </button>
+      <button mat-raised-button color="primary" (click)="showNextWebcam(true)">
+        Switch Camera
+      </button>
+    </div>
+    <div class="snapshot" *ngIf="webcamImage">
+      <h2>Nice one!</h2>
+      <img [src]="webcamImage.imageAsDataUrl" />
+      <br />
+      <button
+        *ngIf="6 - items.length >= 1"
+        mat-raised-button
+        color="primary"
+        (click)="confirm()"
+      >
+        Confirm
+      </button>
+    </div>
+  </div>
+  <h4 *ngIf="errors.length > 0">Messages:</h4>
+  <ul *ngFor="let error of errors">
+    <li>{{ error | json }}</li>
+  </ul>
+</ng-template>
+
+<ng-template #uploadPhoto>
+  <h1 mat-dialog-title>Upload Images</h1>
+  <mat-form-field>
+    <div>
+      <mat-toolbar>
+        <!-- Display files names -->
+        <input matInput [(ngModel)]="fileAttr" readonly name="name" />
+        <!-- Browse Button -->
+        <button mat-flat-button color="primary">Browse File</button>
+      </mat-toolbar>
+      <!-- Fetch selected filed on change -->
+      <input
+        type="file"
+        #fileInput
+        id="uploadFile"
+        (change)="uploadFileEvt($event)"
+        name="uploadFile"
+        minFileSize="1024"
+        multiple="multiple"
+        accept="image/*"
+      />
+    </div>
+  </mat-form-field>
+  <br />
+  <div *ngIf="images.length > 0">
+    <h2>Uploaded Files</h2>
+    <mat-chip-list *ngIf="images.length > 0">
+      <mat-chip *ngFor="let image of images" (removed)="remove(image)">
+        {{ image.name }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+  <br />
+  <button
+    *ngIf="6 - items.length >= images.length && images.length > 0"
+    mat-raised-button
+    color="primary"
+    (click)="confirmUpload()"
+  >
+    Confirm
+  </button>
+</ng-template>
