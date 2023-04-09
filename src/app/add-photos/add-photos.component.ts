@@ -155,7 +155,7 @@ export class AddPhotosComponent implements OnInit {
       imgFile.target.files[0] &&
       imgFile.target.files.length <= 6 - this.items.length
     ) {
-      this.fileAttr = `${this.items.length} File Added`;
+      this.fileAttr = `${this.images.length} File Added`;
     } else {
       this.fileAttr = 'Choose Files';
       this._snackBar.open(
